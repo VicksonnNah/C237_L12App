@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <title>View Notes</title>
+</head>
+<body>
+    <%- include('partials/navbar') %>
+    <div class="container mt-5">
+        <h1>Your Notes</h1>
+        <% if (notes.length === 0) { %>
+            <p>No notes available. <a href="/add-notes">Add a note</a> to get started!</p>
+        <% } else { %>
+            <div class="row g-3">
+                <% notes.forEach(note => { %>
+                    <div class="col-md-4">
+                        <a href="/update-notes/<%= note._id %>" class="card text-decoration-none text-dark h-100">
+                            <div class="card-body">
+                                <h5 class="card-title"><%= note.title %></h5>
+                                <p class="card-text"><%= note.content.substring(0, 100) %>...</p>
+                            </div>
+                        </a>
+                    </div>
+                <% }) %>
+            </div>
+        <% } %>
+</body>
+</html>
